@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import NavBar from './components/NavBar';
-import ProTip from './components/ProTip';
-import Copyright from './components/Copyright';
 
 class App extends Component {
   render() {
     return (
       <Container>
+        <CssBaseline />
         <NavBar />
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App v4-beta example
+        <Box my={4}>
+          <Typography variant="h6" gutterBottom>
+            Create React App v4-beta example
         </Typography>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
+
+        </Box>
+      </Container>
     )
   }
 }

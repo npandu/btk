@@ -7,7 +7,7 @@ const NavBar = () => {
         <div>
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="title" color="green">
+                <Typography variant="h5" color="green">
                 Binary Tree Kudapattu
                 </Typography>
             </Toolbar>
