@@ -12,7 +12,7 @@ const Generations = (props) => {
       top: 10,
       right: 120,
       bottom: 10,
-      left: 40
+      left: 90
     }
 
     const width = 900;
@@ -40,7 +40,7 @@ const Generations = (props) => {
       .attr("fill", "none")
       .attr("stroke", "#555")
       .attr("stroke-opacity", 0.4)
-      .attr("stroke-width", 1.5);
+      .attr("stroke-width", 3.5);
 
     const gNode = svg.append("g")
       .attr("cursor", "pointer")
@@ -83,13 +83,13 @@ const Generations = (props) => {
         });
 
       nodeEnter.append("circle")
-        .attr("r", 2.5)
+        .attr("r", 3.5)
         .attr("fill", d => d._children ? "#555" : "#999")
         .attr("stroke-width", 10);
 
       nodeEnter.append("text")
         .attr("dy", "0.31em")
-        .attr("x", d => d._children ? -6 : 6)
+        .attr("x", d => d._children ? -9 : 9)
         .attr("text-anchor", d => d._children ? "end" : "start")
         .text(d => d.data.name)
         .clone(true).lower()
