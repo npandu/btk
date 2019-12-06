@@ -12,27 +12,32 @@ const App = () => {
 
   const [treeData, setTreeData] = useState([]);
 
+  const makeChildren = (list, ele) => {
+    let getChildren = _.filter(list, (o) => o.gsx$father.$t === ele.id)
+    let children = [];
+
+    getChildren.forEach((ele) => {
+      let person = {};
+      person.name = ele.gsx$name.$t;
+      person.id = ele.gsx$id.$t;
+      person.gender = ele.gsx$gender.$t;
+
+      children.push(person);
+    })
+
+    ele.children = _.cloneDeep(children);
+  }
+
   const prepareData = (list) => {
     let people = {};
     people.name = list[0]["gsx$name"]["$t"];
     people.id = list[0]["gsx$id"]["$t"];
+    people.gender = list[0]["gsx$gender"]["$t"];
 
-    let getMale = _.filter(list, (o) => o.gsx$gender.$t === "M" && o.gsx$father.$t);
+    let getChildren = _.filter(list, (o) => o.gsx$father.$t);
 
     if (!people.children) {
-      let getChildren = _.filter(getMale, (o) => o.gsx$father.$t === people.id)
-      let children = [];
-
-      getChildren.forEach((ele) => {
-        let person = {};
-        person.name = ele.gsx$name.$t;
-        person.id = ele.gsx$id.$t;
-
-        children.push(person);
-      })
-
-      people.children = _.cloneDeep(children);
-
+      makeChildren(getChildren, people)
     }
 
 
@@ -40,48 +45,24 @@ const App = () => {
       // Second
       people.children.forEach((ele) => {
         if (!ele.children) {
-          let getChildren = _.filter(getMale, (o) => o.gsx$father.$t === ele.id)
-          let children = [];
-
-          getChildren.forEach((ele) => {
-            let person = {};
-            person.name = ele.gsx$name.$t;
-            person.id = ele.gsx$id.$t;
-
-            children.push(person);
-          })
-
-          ele.children = _.cloneDeep(children);
+          makeChildren(getChildren, ele)
 
           //Third
           ele.children.forEach((ele) => {
-            let getChildren = _.filter(getMale, (o) => o.gsx$father.$t === ele.id)
-            let children = [];
-
-            getChildren.forEach((ele) => {
-              let person = {};
-              person.name = ele.gsx$name.$t;
-              person.id = ele.gsx$id.$t;
-
-              children.push(person);
-            })
-
-            ele.children = _.cloneDeep(children);
+            makeChildren(getChildren, ele)
 
             //Fourth
             ele.children.forEach((ele) => {
-              let getChildren = _.filter(getMale, (o) => o.gsx$father.$t === ele.id)
-              let children = [];
+              makeChildren(getChildren, ele)
 
-              getChildren.forEach((ele) => {
-                let person = {};
-                person.name = ele.gsx$name.$t;
-                person.id = ele.gsx$id.$t;
-
-                children.push(person);
+              // Fifth
+              ele.children.forEach((ele) => {
+                makeChildren(getChildren, ele)
+  
+                
+  
               })
 
-              ele.children = _.cloneDeep(children);
             })
 
           })

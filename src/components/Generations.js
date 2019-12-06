@@ -17,7 +17,7 @@ const Generations = (props) => {
 
     const width = 900;
 
-    const dx = 10, dy = width / 6;
+    const dx = 25, dy = width / 6;
 
     const diagonal = d3.linkHorizontal().x(d => d.y).y(d => d.x);
 
@@ -38,7 +38,7 @@ const Generations = (props) => {
 
     const gLink = svg.append("g")
       .attr("fill", "none")
-      .attr("stroke", "#555")
+      .attr("stroke", "#23d6e8de")
       .attr("stroke-opacity", 0.4)
       .attr("stroke-width", 3.5);
 
@@ -92,10 +92,12 @@ const Generations = (props) => {
         .attr("x", d => d._children ? -9 : 9)
         .attr("text-anchor", d => d._children ? "end" : "start")
         .text(d => d.data.name)
+        .attr("fill", d => d.data.gender === 'M' ? "#0acc84de" : "#e50ee8de")
+        .attr("stroke-width", 6)
         .clone(true).lower()
         .attr("stroke-linejoin", "round")
-        .attr("stroke-width", 3)
         .attr("stroke", "white");
+        
 
       // Transition nodes to their new position.
       const nodeUpdate = node.merge(nodeEnter).transition(transition)
