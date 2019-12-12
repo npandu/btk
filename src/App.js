@@ -1,118 +1,21 @@
 import React, { Component, useState, useEffect } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { Box, CssBaseline, Typography, Grid } from '@material-ui/core';
 import NavBar from './components/NavBar';
-import Generations from './components/Generations';
-import axios from 'axios';
-import _ from 'lodash';
+import FullWidthTabs from './components/Tabs';
 
 const App = () => {
 
-  const [treeData, setTreeData] = useState([]);
-
-  const makeChildren = (list, ele) => {
-    let getChildren = _.filter(list, (o) => o.gsx$father.$t === ele.id)
-    let children = [];
-
-    getChildren.forEach((ele) => {
-      let person = {};
-      person.name = ele.gsx$name.$t;
-      person.id = ele.gsx$id.$t;
-      person.gender = ele.gsx$gender.$t;
-
-      children.push(person);
-    })
-
-    ele.children = _.cloneDeep(children);
-  }
-
-  const prepareData = (list) => {
-    let people = {};
-    people.name = list[0]["gsx$name"]["$t"];
-    people.id = list[0]["gsx$id"]["$t"];
-    people.gender = list[0]["gsx$gender"]["$t"];
-
-    let getChildren = _.filter(list, (o) => o.gsx$father.$t);
-
-    if (!people.children) {
-      makeChildren(getChildren, people)
-    }
-
-
-
-      // Second
-      people.children.forEach((ele) => {
-        if (!ele.children) {
-          makeChildren(getChildren, ele)
-
-          //Third
-          ele.children.forEach((ele) => {
-            makeChildren(getChildren, ele)
-
-            //Fourth
-            ele.children.forEach((ele) => {
-              makeChildren(getChildren, ele)
-
-              // Fifth
-              ele.children.forEach((ele) => {
-                makeChildren(getChildren, ele)
-  
-                
-  
-              })
-
-            })
-
-          })
-        }
-      })
-
-
-    return people;
-
-  }
-
-  const getData = () => {
-
-    // Make a request for a user with a given ID
-    axios.get('https://spreadsheets.google.com/feeds/list/1wpyciQu2aXL8IzqQBXtwMyP4oGBuJc82K9B--jqVwHk/1/public/values?alt=json')
-      .then(function (response) {
-        // handle success
-        
-        let data = prepareData(response.data.feed.entry);
-
-        console.log(data);
-        setTreeData(data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
-
-  }
-
-  useEffect(() => {
-    if (!treeData.length) {
-      getData();
-    }
-  }, [])
-
   return (
-    <Container>
+    <div>
       <CssBaseline />
       <NavBar />
-      <Box my={4}>
-        <Typography variant="h6" gutterBottom>
-          Generations of People from Kudapattu
-        </Typography>
-        <Generations data={treeData}></Generations>
-      </Box>
-    </Container>
+      <Grid container>
+        <Grid item xs={12}>
+          <FullWidthTabs />
+        </Grid>
+      </Grid>
+
+    </div>
   )
 }
 export default App

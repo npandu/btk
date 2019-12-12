@@ -1,17 +1,20 @@
 import React from 'react'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import { AppBar, Box, Toolbar, Typography } from '@material-ui/core'
 const NavBar = () => {
-    return(
+    return (
         <div>
-        <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h5" color="green">
-                Binary Tree Kudapattu
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h3" color="green">
+                        Binary Tree Kudapattu
                 </Typography>
-            </Toolbar>
-        </AppBar>
+                    <Box mx={2} right>
+                        <Typography variant="h5">
+                            Generations of People from Kudapattu
+                        </Typography>
+                    </Box>
+                </Toolbar>
+            </AppBar>
         </div>
     )
 }
