@@ -32,9 +32,11 @@ const Generations = (props) => {
     });
 
     const svg = d3.select(svgRef.current)
-      .attr("viewBox", [-margin.left, -margin.top, width, dx])
+    .attr("width", width + margin.right + margin.left)
+            //.attr("height", dx + margin.top + margin.bottom)
+      //.attr("viewBox", [-margin.left, -margin.top, width, dx])
       //.style("font", "10px sans-serif")
-      .style("user-select", "none");
+      //.style("user-select", "none");
 
     const gLink = svg.append("g")
       .attr("fill", "none")
