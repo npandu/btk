@@ -6,11 +6,11 @@ const NavBar = () => {
         <div>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h3" color="green">
+                    <Typography variant="h4" color="green">
                         {constants.btk}
                     </Typography>
                     <Box mx={2} right>
-                        <Typography variant="h5">
+                        <Typography variant="h6">
                             {constants.btkSubText}
                         </Typography>
                     </Box>

@@ -92,7 +92,7 @@ const Generations = (props) => {
         .attr("x", d => d._children ? -9 : 9)
         .attr("text-anchor", d => d._children ? "end" : "start")
         .text(d => d.data.name)
-        .attr("fill", d => d.data.gender === 'M' ? "#0acc84de" : "#e50ee8de")
+        .attr("fill", d => d.data.gender === 'M' ? "#444" : "#e50ee8de")
         .attr("stroke-width", 6)
         .clone(true).lower()
         .attr("stroke-linejoin", "round")
