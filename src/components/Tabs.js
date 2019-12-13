@@ -100,7 +100,7 @@ export default function FullWidthTabs() {
                     <Generations data={generationData} />
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                <VerticalTree data={generationData} />
+                Second data
         </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
                     Item Three

@@ -32,11 +32,10 @@ const Generations = (props) => {
     });
 
     const svg = d3.select(svgRef.current)
-    .attr("width", width + margin.right + margin.left)
-            //.attr("height", dx + margin.top + margin.bottom)
-      //.attr("viewBox", [-margin.left, -margin.top, width, dx])
+      .attr("viewBox", [-margin.left, -margin.top, width, dx])
+      //.attr("preserveAspectRatio", "xMidYMid meet")
       //.style("font", "10px sans-serif")
-      //.style("user-select", "none");
+      .style("user-select", "none");
 
     const gLink = svg.append("g")
       .attr("fill", "none")
@@ -68,6 +67,7 @@ const Generations = (props) => {
       const transition = svg.transition()
         .duration(duration)
         .attr("viewBox", [-margin.left, left.x - margin.top, width, height])
+        //.attr("preserveAspectRatio", "xMidYMid meet")
         .tween("resize", window.ResizeObserver ? null : () => () => svg.dispatch("toggle"));
 
       // Update the nodes…
