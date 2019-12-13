@@ -33,14 +33,14 @@ const Generations = (props) => {
 
     const svg = d3.select(svgRef.current)
       .attr("viewBox", [-margin.left, -margin.top, width, dx])
-      .style("font", "10px sans-serif")
+      //.style("font", "10px sans-serif")
       .style("user-select", "none");
 
     const gLink = svg.append("g")
       .attr("fill", "none")
       .attr("stroke", "#23d6e8de")
       .attr("stroke-opacity", 0.4)
-      .attr("stroke-width", 3.5);
+      .attr("stroke-width", ".3em");
 
     const gNode = svg.append("g")
       .attr("cursor", "pointer")
@@ -83,17 +83,19 @@ const Generations = (props) => {
         });
 
       nodeEnter.append("circle")
-        .attr("r", 3.5)
+        .attr("r", 4.5)
         .attr("fill", d => d._children ? "#555" : "#999")
-        .attr("stroke-width", 10);
+        .attr("stroke", d => d._children ? "#23d6e8de" : "#555")
+        .attr("stroke-width", ".4em");
 
       nodeEnter.append("text")
         .attr("dy", "0.31em")
-        .attr("x", d => d._children ? -9 : 9)
+        .attr("x", d => d._children ? -12 : 12)
         .attr("text-anchor", d => d._children ? "end" : "start")
         .text(d => d.data.name)
         .attr("fill", d => d.data.gender === 'M' ? "#444" : "#e50ee8de")
-        .attr("stroke-width", 6)
+        .attr("stroke-width", ".3em")
+        .attr("font-size", ".7em")
         .clone(true).lower()
         .attr("stroke-linejoin", "round")
         .attr("stroke", "white");
